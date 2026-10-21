@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sızıntı Zinciri</title>
+<meta name="description" content="Bir hesabım sızınca, aynı şifreyi ya da aynı kurtarma e-postasını kullanan hangi hesaplarımın tehlikede olduğunu sırayla görüyorum.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' rx='3' fill='%230d0709'/%3E%3Ccircle cx='5' cy='8' r='3' fill='none' stroke='%23ffcf3a' stroke-width='2'/%3E%3Ccircle cx='11' cy='8' r='3' fill='none' stroke='%23c8322b' stroke-width='2'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <h1>Sızıntı <span>Zinciri</span></h1>
+    <p class="lead">Bir hesabım sızınca hangi hesaplarımın zincirleme tehlikeye girdiğini görüyorum. <b>Buraya gerçek şifre yazmıyorum.</b> Sadece "A, B, C" gibi şifre grubu etiketleri kullanıyorum.</p>
+  </header>
+
+  <main class="grid">
+    <section class="card">
+      <div class="cardHead">
+        <h2>Hesaplarım</h2>
+        <div class="tools">
+          <button id="bSample" type="button">Örnek koy</button>
+          <button id="bClear" type="button">Temizle</button>
+        </div>
+      </div>
+      <p class="hint">Aynı şifreyi kullandığım hesaplara aynı harfi veriyorum. "Kurtarma" kısmında şifremi unutunca kodun geldiği hesabı seçiyorum. Sızan hesabın yanındaki <b>Sızdı</b> düğmesine basıyorum.</p>
+
+      <form id="fAdd" class="add" autocomplete="off">
+        <label>Hesap adı <input id="iAd" type="text" placeholder="ör. Gmail" maxlength="40" required></label>
+        <label>Şifre grubu <input id="iGrup" type="text" placeholder="A" maxlength="3" required></label>
+        <label>Kurtarma e-postası <select id="sKurtarma"><option value="">Yok / bilmiyorum</option></select></label>
+        <label>Önem <select id="sOnem"><option value="1">Az</option><option value="2" selected>Orta</option><option value="3">Çok</option></select></label>
+        <label class="chk"><input id="cIki" type="checkbox"> İki adımlı doğrulama açık</label>
+        <button type="submit" class="main">+ Hesap ekle</button>
+      </form>
+
+      <div class="tableWrap">
+        <table>
+          <thead><tr><th>Hesap</th><th>Grup</th><th>Kurtarma</th><th>2 adım</th><th>Durum</th><th></th></tr></thead>
+          <tbody id="tbody"></tbody>
+        </table>
+      </div>
+      <p class="empty" id="empty">Henüz hesap yok. "Örnek koy" ile deneyebilirim.</p>
+    </section>
+
+    <section class="card">
+      <h2>Ne yapmalıyım?</h2>
+      <div class="stats" id="stats"></div>
+      <div id="chains" class="chains"></div>
+      <ol id="plan" class="plan"></ol>
+      <p class="empty" id="calm">Sızan hesap seçmedim. Bir hesabın yanındaki "Sızdı" düğmesine basınca sıram burada çıkacak.</p>
+
+      <div class="backup">
+        <button id="bExport" type="button">Yedeğimi indir</button>
+        <label class="fileBtn">Yedeğimi yükle <input id="iImport" type="file" accept="application/json,.json"></label>
+      </div>
+      <p class="hint">Her şey sadece bu tarayıcıda duruyor. Hiçbir yere gönderilmiyor.</p>
+    </section>
+  </main>
+  <div class="toast" id="toast" role="status"></div>
+</div>
+<script type="module" src="app.mjs"></script>
+</body>
+</html>
